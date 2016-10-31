@@ -13,8 +13,7 @@ class TendayTest < Minitest::Test
     assert Tenday
   end
 
-  def test_get_all_periods_from_10_day_forcast
-    skip
+  def test_get_all_periods_from_10_day_forcast_no_if_option
     stub_request(
       :get,
       "http://api.wunderground.com/api/ceaa7f96534634e7/forecast10day/q/20001.json"
@@ -26,10 +25,11 @@ class TendayTest < Minitest::Test
 
     a = Tenday.new.get10(20001)
     #190 is the sum of the numbers from 0 to 19
-    assert_equal  Tenday.new.get_all_periods(a).sum, 190
+    assert_equal  Tenday.new.get_all_periods(a).count, 19
   end
 
   def test_get_all_periods_from_10_day_forcast
+    skip
     stub_request(
       :get,
       "http://api.wunderground.com/api/ceaa7f96534634e7/forecast10day/q/20001.json"

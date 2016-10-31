@@ -13,7 +13,13 @@ class Tenday
 
   def get_all_periods(input)
     b = input
-    b['forecast']['txt_forecast']['forecastday'].collect { |k| k['period']}
+    array = []
+    b['forecast']['txt_forecast']['forecastday'].each do |k|
+      array <<  " - #{k['title']}: #{k['fcttext']}"
+
+    end
+    array.join("
+")
   end
 
   def only_night_forcast(input)
