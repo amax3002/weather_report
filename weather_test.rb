@@ -21,7 +21,7 @@ class WeatherTest < Minitest::Test
       :headers => {'Content-Type' => 'application/json'}
     )
 
-    Weather.new.get(20001)
+    refute_equal Weather.new.get(20001), nil
   end
 
   def test_can_get_temp_in_f
@@ -34,8 +34,6 @@ class WeatherTest < Minitest::Test
       :headers => {'Content-Type' => 'application/json'}
     )
 
-  a =  Weather.new.get(20001)
-  assert_equal a.parsed_response['current_observation']['temp_f'], 57.6
-  #a.caller('pws')
+  assert_equal Weather.new.get_temp_in_f(20001), 57.6
   end
 end
