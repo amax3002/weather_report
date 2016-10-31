@@ -14,7 +14,26 @@ class Weather
     HTTParty.get("#{BASE_URI}/conditions/q/#{zipcode}.json")
   end
 
-  def get_temp_in_f(zip)
-    get(zip)['current_observation']['temp_f']
+  def get_temp_in_f(input)
+    a = input
+    a['current_observation']['temp_f']
   end
+
+  def get_full_name(input)
+    a = input
+    a['current_observation']['display_location']['full']
+  end
+
+  def get_humidity(input)
+    a = input
+    a['current_observation']['relative_humidity']
+  end
+
+  def get_wind(input)
+    a = input
+    a['current_observation']['wind_gust_mph']
+  end
+
+
+
 end

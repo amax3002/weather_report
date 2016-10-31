@@ -11,16 +11,33 @@ def get_sun(zipcode)
   HTTParty.get("#{SUN_URI}/q/#{zipcode}.json")
 end
 
-def get_sunrise_hour(zip)
-  get_sun(zip)['moon_phase']['sunrise']['hour']
+def get_sunrise_hour(input)
+  a = input
+  a['moon_phase']['sunrise']['hour']
 end
 
-def get_sunrise_minute(zip)
-  get_sun(zip)['moon_phase']['sunrise']['minute']
+def get_sunrise_minute(input)
+  a = input
+  a['moon_phase']['sunrise']['minute']
 end
 
-def get_full_sunrise_time(zip)
-  return "The sunrise will be at: #{get_sunrise_hour(zip)}:#{get_sunrise_minute(zip)} AM"
+def get_full_sunrise_time(input)
+  return "The sunrise will be at: #{get_sunrise_hour(input)}:#{get_sunrise_minute(input)} AM"
+end
+
+
+def get_sunset_hour(input)
+  a = input
+  a['moon_phase']['sunset']['hour'].to_i - 12
+end
+
+def get_sunset_minute(input)
+  a = input
+  a['moon_phase']['sunset']['minute']
+end
+
+def get_full_sunset_time(input)
+  return "The sunset will be at: #{get_sunset_hour(input)}:#{get_sunset_minute(input)} PM"
 end
 
 end

@@ -24,7 +24,9 @@ class AlertTest < Minitest::Test
       :headers => {'Content-Type' => 'application/json'}
     )
 
-    assert_equal  Alert.new.get_full_alert(59261), "The current alert is WND with a local description of: Lake Wind Advisory"
+    a = Alert.new.get_alert(59261)
+
+    assert_equal  Alert.new.get_full_alert(a), "The current alert is WND with a local description of: Lake Wind Advisory"
   end
 
   def test_full_alert_without_alert
@@ -37,6 +39,8 @@ class AlertTest < Minitest::Test
       :headers => {'Content-Type' => 'application/json'}
     )
 
-    assert_equal  Alert.new.get_full_alert(20001), "No Alert"
+    a = Alert.new.get_alert(20001)
+
+    assert_equal  Alert.new.get_full_alert(a), "No Alert"
   end
 end

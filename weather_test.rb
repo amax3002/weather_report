@@ -13,12 +13,12 @@ class WeatherTest < Minitest::Test
 
   def test_can_get_weather
     stub_request(
-      :get,
-      "http://api.wunderground.com/api/ceaa7f96534634e7/conditions/q/20001.json"
+    :get,
+    "http://api.wunderground.com/api/ceaa7f96534634e7/conditions/q/20001.json"
     ).to_return(
-      :status => 200,
-      :body => File.read("responses/washington_dc_get.json"),
-      :headers => {'Content-Type' => 'application/json'}
+    :status => 200,
+    :body => File.read("responses/washington_dc_get.json"),
+    :headers => {'Content-Type' => 'application/json'}
     )
 
     refute_equal Weather.new.get(20001), nil
@@ -26,14 +26,32 @@ class WeatherTest < Minitest::Test
 
   def test_can_get_temp_in_f
     stub_request(
-      :get,
-      "http://api.wunderground.com/api/ceaa7f96534634e7/conditions/q/20001.json"
+    :get,
+    "http://api.wunderground.com/api/ceaa7f96534634e7/conditions/q/20001.json"
     ).to_return(
-      :status => 200,
-      :body => File.read("responses/washington_dc_get.json"),
-      :headers => {'Content-Type' => 'application/json'}
+    :status => 200,
+    :body => File.read("responses/washington_dc_get.json"),
+    :headers => {'Content-Type' => 'application/json'}
     )
 
-  assert_equal Weather.new.get_temp_in_f(20001), 57.6
+    a = Weather.new.get(20001)
+
+    assert_equal Weather.new.get_temp_in_f(a), 57.6
   end
+
+  def test_can_get_full_name
+    stub_request(
+    :get,
+    "http://api.wunderground.com/api/ceaa7f96534634e7/conditions/q/20001.json"
+    ).to_return(
+    :status => 200,
+    :body => File.read("responses/washington_dc_get.json"),
+    :headers => {'Content-Type' => 'application/json'}
+    )
+
+    a = Weather.new.get(20001)
+
+    assert_equal Weather.new.get_full_name(a), "Washington, DC"
+  end
+
 end
