@@ -9,13 +9,13 @@ require './alert'
 
 
 puts "Please enter a zipcode: "
-user_input = gets.chomp().to_i
+zipcode = gets.chomp().to_i
 
 
-weather = Weather.new.get(user_input)
-tenday = Tenday.new.get10(user_input)
-sun = Sun.new.get_sun(user_input)
-alert = Alert.new.get_alert(user_input)
+weather = Weather.new.get(zipcode)
+tenday = Tenday.new.get10(zipcode)
+sun = Sun.new.get_sun(zipcode)
+alert = Alert.new.get_alert(zipcode)
 
 puts ''
 puts ''
@@ -27,7 +27,7 @@ puts "Current temperture in F: #{Weather.new.get_temp_in_f(weather)}"
 puts "Humidity: #{Weather.new.get_humidity(weather)}"
 puts "Wind mph: #{Weather.new.get_wind(weather)}"
 puts '--'*40
-puts "The 10 day forcast is:"
+puts "The 10 day forcast"
 puts Tenday.new.get_all_periods(tenday)
 puts '--'*40
 puts "Sunrise and Sunset"
